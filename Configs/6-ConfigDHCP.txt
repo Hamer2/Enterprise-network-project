@@ -1,0 +1,76 @@
+!Gateway Router
+conf t
+
+! Exclude addresses
+
+!LAN10 - Admin
+ip dhcp excluded-address 132.234.27.65 132.234.27.70
+
+!LAN20 - Science
+ip dhcp excluded-address 132.234.25.1  132.234.25.12 
+
+!LAN30 - IT
+ip dhcp excluded-address 132.234.24.1 132.234.24.20
+
+!LAN40 - Business
+ip dhcp excluded-address 132.234.26.1 132.234.26.10
+
+!LAN50 - HR
+ip dhcp excluded-address 132.234.27.97 132.234.27.98
+
+
+! Admin DHCP POOL
+ip dhcp pool LAN10
+network 132.234.27.64 255.255.255.224
+default-router 132.234.27.65
+domain-name cisco.com
+
+
+! Science DHCP POOL
+ip dhcp pool LAN20
+network 132.234.25.0 255.255.255.0
+default-router 132.234.25.1
+domain-name cisco.com
+
+! IT DHCP POOL
+ip dhcp pool LAN30
+network 132.234.24.0 255.255.255.0
+default-router 132.234.24.1
+domain-name cisco.com
+
+! Business DHCP POOL
+ip dhcp pool LAN40
+network 132.234.26.0 255.255.255.128
+default-router 132.234.26.1
+domain-name cisco.com
+
+! HR DHCP POOL
+ip dhcp pool LAN50
+network 132.234.27.96 255.255.255.240
+default-router 132.234.27.97
+domain-name cisco.com
+
+---------------------------------------------------------
+! Relays
+
+!R1 Relays
+int g0/0.10
+ip helper-address 132.234.27.145
+
+int g0/1.20
+ip helper-address 132.234.27.145
+
+int g0/1.30
+ip helper-address 132.234.27.145
+
+int g0/1.40
+ip helper-address 132.234.27.145
+
+===
+
+
+!R3 Relay
+int g0/1.50
+ip helper-address 132.234.27.145
+
+

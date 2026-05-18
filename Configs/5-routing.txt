@@ -1,0 +1,102 @@
+!ISP
+
+!Default route to lo1/Internet
+ip route 0.0.0.0 0.0.0.0 lo1
+ipv6 route ::/0 lo1
+
+
+!Internet to Company 
+!g0/0	  
+ip route 132.234.24.0 255.255.252.0 200.100.100.2
+ipv6 route 2001:DB8:CAFE::/60 2001:DB8:ACAD::2
+!g0/1  
+ip route 132.234.24.0 255.255.252.0 200.100.100.6 80 
+ipv6 route 2001:DB8:CAFE::/60 2001:DB8:ACAE::2 80
+
+=============================================================
+!GATEWAY
+
+en
+conf t
+!Default routes to ISP
+!g0/0
+ip route 0.0.0.0 0.0.0.0 200.100.100.1
+ipv6 route ::/0 2001:DB8:ACAD::1
+!g0/1
+ip route 0.0.0.0 0.0.0.0 200.100.100.5 80
+ipv6 route ::/0 2001:DB8:ACAE::1 80
+
+!summarised route to networks behind r1
+ip route 132.234.24.0 255.255.252.0 132.234.27.146
+ipv6 route 2001:DB8:CAFE::/60 2001:DB8:CAFE:1::2
+
+===============================================================================================
+!R1
+
+en
+conf t
+!Default route to Gateway
+ip route 0.0.0.0 0.0.0.0 132.234.27.145
+ipv6 route ::/0 2001:DB8:CAFE:1::1
+
+!Route to networks behind r2
+
+!R2-R3 serial network
+ip route 132.234.27.152 255.255.255.252 132.234.27.150
+ipv6 route 2001:DB8:CAFE:3::/64 2001:DB8:CAFE:2::2
+
+!lo2
+ip route 132.234.27.0 255.255.255.192 132.234.27.150
+ipv6 route 2001:DB8:CAFE:9::/64 2001:DB8:CAFE:2::2
+
+!lo3
+ip route 132.234.26.128 255.255.255.128 132.234.27.150
+ipv6 route 2001:DB8:CAFE:A::1/64 2001:DB8:CAFE:2::2
+
+!HR/vlan50
+ip route 132.234.27.96 255.255.255.240 132.234.27.150
+ipv6 route 2001:DB8:CAFE:8::1/64 2001:DB8:CAFE:2::2
+
+!management3/vlan100
+ip route 132.234.27.136 255.255.255.248 132.234.27.150
+
+
+
+===============================================================================================
+!R2
+
+en
+conf t
+!Default route to R1
+ip route 0.0.0.0 0.0.0.0 132.234.27.149
+ipv6 route ::/0 2001:DB8:CAFE:2::1
+
+!Route to networks behind R3
+
+!lo2
+ip route 132.234.27.0 255.255.255.192 132.234.27.154
+ipv6 route 2001:DB8:CAFE:9::/64 2001:DB8:CAFE:3::2
+
+!lo3
+ip route 132.234.26.128 255.255.255.128 132.234.27.154
+ipv6 route 2001:DB8:CAFE:A::1/64 2001:DB8:CAFE:3::2
+
+!HR
+ip route 132.234.27.96 255.255.255.240 132.234.27.154
+ipv6 route 2001:DB8:CAFE:8::1/64 2001:DB8:CAFE:3::2
+
+!Management3
+ip route 132.234.27.136 255.255.255.248 132.234.27.154
+
+
+===============================================================================================
+
+!R3
+
+en
+conf t
+!Default route to R2
+ip route 0.0.0.0 0.0.0.0 132.234.27.153
+ipv6 route ::/0 2001:DB8:CAFE:3::1
+
+

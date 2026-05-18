@@ -1,0 +1,43 @@
+!S1-S6
+
+en
+conf t
+vlan 20
+name Science
+vlan 30
+name IT
+vlan 40
+name Business
+vlan 99
+name Management2
+vlan 555
+name Parking_Lot
+vlan 1000
+name Native
+end
+
+!S7
+en
+conf t
+vlan 10
+name Admin
+vlan 98
+name Management1
+vlan 555
+name Parking_Lot
+vlan 1000
+name Native
+end
+
+!S8
+en
+conf t
+vlan 50
+name HR
+vlan 100
+name Management3
+vlan 555
+name Parking_Lot
+vlan 1000
+name Native
+end
