@@ -27,4 +27,4 @@ The project included configuring routers, switches, DHCP and SLAAC address alloc
 
 - `network.pka` — Cisco Packet Tracer file
 - `topology.png` — network topology overview
-- `configs/` — router and switch configuration files
+- `Configs/` — router and switch configuration files
