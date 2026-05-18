@@ -1,0 +1,100 @@
+!Switches
+en
+conf t
+hostname ISP
+no ip domain-lookup
+end
+
+en
+conf t
+hostname GATEWAY
+no ip domain-lookup
+end
+
+en
+conf t
+hostname R1
+no ip domain-lookup
+end
+
+en
+conf t
+hostname R2
+no ip domain-lookup
+end
+
+en
+conf t
+hostname R3
+no ip domain-lookup
+end
+
+en
+conf t
+hostname R4
+no ip domain-lookup
+end
+
+
+
+enable secret class
+line con 0
+password cisco
+login
+logging synchronous
+line vty 0 15
+password cisco
+login
+logging synchronous
+exit
+service password-encryption
+banner motd "Unauthorised Access is Prohibited."
+
+
+!SSH
+ip domain-name cisco.com
+username admin secret cisco
+line vty 0 15
+transport input ssh
+login local
+exit
+crypto key generate rsa
+1024
+ip ssh version 2
+end
+
+
+
+#=======================Routers=============================
+!Routers
+
+conf t
+
+hostname ISP
+no ip domain-lookup
+
+
+enable secret class
+line con 0
+password cisco
+login
+logging synchronous
+line vty 0 4
+password cisco
+login
+logging synchronous
+exit 
+service password-encryption
+banner motd "Unauthorised Access is Prohibited."
+
+!SSH
+ip domain-name cisco.com
+username admin secret cisco
+line vty 0 4
+transport input ssh
+login local
+exit
+crypto key generate rsa
+1024
+ip ssh version 2
+end
