@@ -1,17 +1,17 @@
 # Enterprise Network Design and Implementation
 
-This Project involved using designing and implementing a simulated enterprise-level IPv4/IPv6 network using Cisco Packet Tracer and networking concepts.
+This project involved designing and implementing a simulated enterprise-level IPv4/IPv6 network environment using Cisco Packet Tracer and Cisco networking concepts.
 
 ## Technologies and Concepts
 
 - IPv4 / IPv6
-- VLSM Subnetting
+- VLSM subnetting
 - VLAN segmentation
 - Inter-VLAN routing
 - Static and summarised routing
 - WAN redundancy and ISP failover
-- DHCP and SLAAC
-- EtherCHannel (PAgP)
+- DHCP and IPv6 SLAAC
+- EtherChannel (PAgP)
 - STP, PortFast and BPDU Guard
 - SSH management access
 - Port security
@@ -21,10 +21,10 @@ This Project involved using designing and implementing a simulated enterprise-le
 
 The network was designed to support multiple departments within a simulated enterprise environment with separate VLANs, management networks and WAN connectivity to an ISP.
 
-The project included configuring routers, switches, DHCP and SLAAC for allocated addresses, routing protocols, VLANs and security features while troubleshooting end-to-end connectivity across the network.
+The project included configuring routers, switches, DHCP and SLAAC address allocation, VLANs, routing, WAN redundancy and security features while troubleshooting end-to-end connectivity across the network.
 
 ## Files
 
-- 'network.pka' - Cisco Packet Tracer file
-- 'topology.png' - Network topology overview
-- 'configs/' - router and switch configuration files
+- `network.pka` — Cisco Packet Tracer file
+- `topology.png` — network topology overview
+- `configs/` — router and switch configuration files
